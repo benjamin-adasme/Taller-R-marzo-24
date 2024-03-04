@@ -1,0 +1,74 @@
+---
+title: "Sesión 1 - Entrando al mundo de R"
+subtitle: "Taller introductorio a R"
+format: kakashi-revealjs
+author: 
+  - name: Benjamín Adasme
+  - email: benja.adasme.j@gmail.com
+date: last-modified
+editor: source
+---
+
+## Presentación
+
+:::: {.columns}
+
+::: {.column width="60%"}
+:::{.nonincremental} 
+::: {.smaller}
+
+- Sociólogo egresado de la UCM en 2019
+- Dedicado al análisis de datos cuantitativos desde 2021
+- Formación certificada en R y Rstudio
+- Nerd de R y la estadística
+
+:::
+:::
+:::
+
+
+::: {.column width="40%"}
+
+![Quien les habla](foto Benjamín Adasme 2.jpg)
+:::
+
+::::
+
+## Objetivos
+
+Objetivo general: introducir R en personas que analicen datos cuantitativos sin lenguajes de programación.
+
+Específicos:
+
+:::{.nonincremental}
+- Conocer la utilidad de R
+- Conocer las herramientas básicas de R base
+- Conocer tidyverse, para limpieza y exploración de datos 
+- Repasar estadísticas descriptiva y avanzada 
+- Conocer herramientas de presentación de datos como Rmarkdown y Quarto 
+
+:::
+
+---
+
+```{r}
+#| echo: false
+pacman::p_load(tidyverse, gt, janitor)
+```
+
+
+```{r}
+#| echo: false
+t1 <- readxl::read_xlsx("s01_comparacion.xlsx")
+
+gt(t1) %>% 
+  tab_caption(caption = "Fuente: Boccardo Bosoni y Ruiz Bruzzone, 2019") %>% 
+  tab_header(title = "Comparación de herramientas computacionales estadísticas")
+
+```
+
+
+
+---
+# Vamos a R
+

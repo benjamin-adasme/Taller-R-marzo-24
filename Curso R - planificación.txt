@@ -1,0 +1,63 @@
+Curso express para introducir a R 
+
+Objetivo general: introducir R en personas de ciencias sociales que analicen datos. 
+Objetivos específicos: 
+Conocer la utilidad de R
+Convencer de usar R (o cualquier otro lenguaje open Source como Python)
+Conocer las herramientas básicas de R base
+Conocer tidyverse, para limpieza y exploración de datos 
+Repasar estadísticas descriptiva y avanzada 
+Conocer herramientas de presentación de datos como Rmarkdown y quarto 
+
+Parte 1
+
+Que es, de donde sale
+Por que es importante hoy: ventajas frente a SPSS y Excel y Stata (cuadro comparativo)
+Lenguaje de programación: ventajas de aprender a programar. Curva de aprendizaje
+R y RStudio. Lenguaje e IDE. Instalación (Windows)
+Primer (y único uso) de R tradicional 
+Primera vista a RStudio. Paneles básicos: Consola, ambiente, archivos y visualizador
+Uso de la consola. Breve porque ya se habrá usado en R. Uso como calculadora
+Uso de operadores lógicos 
+Primer script: creación de vectores. 
+Introducción de la idea de objetos. Tipos de objetos, los principales y básicos: numéricos (double e integer), character, fechas, factores 
+Introducción a las funciones: nombre(argumentos)
+Funciones básicas a revisar: c, min, Max, uni que, length, dim, operadores de vectores y DF [ ], class, funciones is.,  data.frame, $, mean, median, table, sd (con na.rm)
+Funciones anidadas (fun(fun(x), y)
+Guardar script
+
+
+Parte 2: introducción al tidyverse + estadística descriptiva 
+
+qué es tidyverse: sentido de “tidy”, paquetes para la ciencia de datos. 
+Datos en formato ordenado. Filas = casos, columnas = variables
+Principales paquetes
+Ordenando nuestros datos. DF versus tibble
+Select y filtre
+Manipulación de datos con summarise mútate y grupal y
+Introducción a los joins 
+Funciones pivot
+Funciones varias 
+
+Parte 3: gráficos con ggplot2 
+
+importancia de le visualización de Datos
+Ventajas de la visualización: el caso del conjunto de Anscombe y el Datasauros Dozen
+Usted no lo haga: malos ejemplos de visualización de datos 
+Gráficos en R. Base, ideas generales
+
+
+
+Parte 4: profundización en estadísticas 
+
+Parte 4: publicando resultados: quarto 
+
+Cuestiones generales 
+Recursos complementarios como 
+libros base (R para ciencia de datos, el de la u de Chile)
+Cursos online
+Twitter (ahora X). Seguir ciertas cuentas
+YouTube
+Stackoverflow
+Google
+Chat GPT (utilizar con precaución)
