@@ -1,7 +1,9 @@
 ---
 title: "Sesión 1 - Entrando al mundo de R"
 subtitle: "Taller introductorio a R"
-format: kakashi-revealjs
+format: 
+  kakashi-revealjs:
+    footer: "Introducción a R y Rstudio"
 author: 
   - name: Benjamín Adasme
   - email: benja.adasme.j@gmail.com
@@ -9,20 +11,20 @@ date: last-modified
 editor: source
 ---
 
-## Presentación
+## Presentación {.smaller}
 
 :::: {.columns}
 
 ::: {.column width="60%"}
 :::{.nonincremental} 
-::: {.smaller}
+
 
 - Sociólogo egresado de la UCM en 2019
 - Dedicado al análisis de datos cuantitativos desde 2021
 - Formación certificada en R y Rstudio
 - Nerd de R y la estadística
 
-:::
+
 :::
 :::
 
@@ -34,22 +36,44 @@ editor: source
 
 ::::
 
-## Objetivos
+## Objetivo general {.center}
 
-Objetivo general: introducir R en personas que analicen datos cuantitativos sin lenguajes de programación.
+Introducir R en personas que analicen datos cuantitativos sin lenguajes de programación.
 
-Específicos:
 
-:::{.nonincremental}
-- Conocer la utilidad de R
-- Conocer las herramientas básicas de R base
-- Conocer tidyverse, para limpieza y exploración de datos 
-- Repasar estadísticas descriptiva y avanzada 
-- Conocer herramientas de presentación de datos como Rmarkdown y Quarto 
+
+---
+
+## Específicos {.smaller}
+
+:::{.incremental}
+- Conocer la utilidad de R y las herramientas básicas de R base
+- Conocer tidyverse, para limpieza, manipulación y exploración de datos 
+- Repasar estadísticas descriptiva (uni y multivariada) e inferencial. 
+- Conocer las herramientas de creación de gráficos en R, específicamente ggplot2 y la gramática de gráficos.
+- Conocer herramientas de presentación de datos como Quarto para la difusión y divulgación.
 
 :::
 
 ---
+
+## Breve historia {.center}
+
+Comienza su desarrollo en 1993 la U de Auckland. En 1997 sale a la luz en su versión definitiva. Ese mismo año se crea el CRAN que alberga los paquetes y se une al Proyecto GNU de software libre.
+
+Actualmente el desarrollo depende del R Development Core Team. 
+
+En 2011 se publica la primera versión de Rstudio, la IDE más popular para trabajar con R. 
+
+## ¿Por qué usar R?
+
+:::{.incremental}
+- Replicabilidad
+- Eficiencia
+- Control
+:::
+
+## R vs el mundo 
 
 ```{r}
 #| echo: false
@@ -62,13 +86,28 @@ pacman::p_load(tidyverse, gt, janitor)
 t1 <- readxl::read_xlsx("s01_comparacion.xlsx")
 
 gt(t1) %>% 
-  tab_caption(caption = "Fuente: Boccardo Bosoni y Ruiz Bruzzone, 2019") %>% 
-  tab_header(title = "Comparación de herramientas computacionales estadísticas")
+  tab_footnote(footnote = "Fuente: Boccardo Bosoni y Ruiz Bruzzone, 2019") %>% 
+  tab_header(title = "Comparación de herramientas computacionales estadísticas") %>% 
+  tab_options(column_labels.font.weight = "bold") %>% 
+  tab_style(locations = cells_body(columns = 1),
+            style = cell_text(weight = "bold"))
 
 ```
 
+## {.center}
 
 
----
+![Una curva de aprendizaje](1.learning-curve.png)
+
+
+## Expectativas
+
+:::
+- Disposición al aprendizaje
+- Espíritu colaborativo
+- Curiosidad 
+- Tolerancia a la frustración
+
+
 # Vamos a R
 

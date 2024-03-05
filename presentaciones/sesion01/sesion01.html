@@ -10,7 +10,7 @@
 <link href="sesion01_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.545">
 
-  <meta name="dcterms.date" content="2024-03-01">
+  <meta name="dcterms.date" content="2024-03-04">
   <title>Sesión 1 - Entrando al mundo de R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -332,21 +332,19 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2024-03-01</p>
+  <p class="date">2024-03-04</p>
 </section>
-<section id="presentación" class="slide level2">
+<section id="presentación" class="slide level2 smaller">
 <h2>Presentación</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div>
-<div class="smaller">
 <ul>
 <li>Sociólogo egresado de la UCM en 2019</li>
 <li>Dedicado al análisis de datos cuantitativos desde 2021</li>
 <li>Formación certificada en R y Rstudio</li>
 <li>Nerd de R y la estadística</li>
 </ul>
-</div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
@@ -358,41 +356,60 @@
 </div>
 </div>
 </section>
-<section id="objetivos" class="slide level2">
-<h2>Objetivos</h2>
-<p>Objetivo general: introducir R en personas que analicen datos cuantitativos sin lenguajes de programación.</p>
+<section id="objetivo-general" class="slide level2 center">
+<h2>Objetivo general</h2>
+<p>Introducir R en personas que analicen datos cuantitativos sin lenguajes de programación.</p>
 <p>Específicos:</p>
+</section>
+<section id="específicos" class="slide level2 smaller">
+<h2>Específicos</h2>
 <div>
 <ul>
-<li>Conocer la utilidad de R</li>
-<li>Conocer las herramientas básicas de R base</li>
-<li>Conocer tidyverse, para limpieza y exploración de datos</li>
-<li>Repasar estadísticas descriptiva y avanzada</li>
-<li>Conocer herramientas de presentación de datos como Rmarkdown y Quarto</li>
+<li class="fragment">Conocer la utilidad de R y las herramientas básicas de R base</li>
+<li class="fragment">Conocer tidyverse, para limpieza, manipulación y exploración de datos</li>
+<li class="fragment">Repasar estadísticas descriptiva (uni y multivariada) e inferencial.</li>
+<li class="fragment">Conocer las herramientas de creación de gráficos en R, específicamente ggplot2 y la gramática de gráficos.</li>
+<li class="fragment">Conocer herramientas de presentación de datos como Quarto para la difusión y divulgación.</li>
 </ul>
 </div>
 </section>
-<section class="slide level2">
-
+<section id="breve-historia" class="slide level2 center">
+<h2>Breve historia</h2>
+<p>Comienza su desarrollo en 1993 la U de Auckland. En 1997 sale a la luz en su versión definitiva. Ese mismo año se crea el CRAN que alberga los paquetes y se une al Proyecto GNU de software libre.</p>
+<p>Actualmente el desarrollo depende del R Development Core Team.</p>
+<p>En 2011 se publica la primera versión de Rstudio, la IDE más popular para trabajar con R.</p>
+</section>
+<section id="por-qué-usar-r" class="slide level2">
+<h2>¿Por qué usar R?</h2>
+<div>
+<ul>
+<li class="fragment">Replicabilidad</li>
+<li class="fragment">Eficiencia</li>
+<li class="fragment">Control</li>
+</ul>
+</div>
+</section>
+<section id="r-vs-el-mundo" class="slide level2">
+<h2>R vs el mundo</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fsectamxir" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fsectamxir table {
+<div id="cgmvbzyrvq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cgmvbzyrvq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fsectamxir thead, #fsectamxir tbody, #fsectamxir tfoot, #fsectamxir tr, #fsectamxir td, #fsectamxir th {
+#cgmvbzyrvq thead, #cgmvbzyrvq tbody, #cgmvbzyrvq tfoot, #cgmvbzyrvq tr, #cgmvbzyrvq td, #cgmvbzyrvq th {
   border-style: none;
 }
 
-#fsectamxir p {
+#cgmvbzyrvq p {
   margin: 0;
   padding: 0;
 }
 
-#fsectamxir .gt_table {
+#cgmvbzyrvq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -418,12 +435,12 @@
   border-left-color: #D3D3D3;
 }
 
-#fsectamxir .gt_caption {
+#cgmvbzyrvq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fsectamxir .gt_title {
+#cgmvbzyrvq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -435,7 +452,7 @@
   border-bottom-width: 0;
 }
 
-#fsectamxir .gt_subtitle {
+#cgmvbzyrvq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -447,7 +464,7 @@
   border-top-width: 0;
 }
 
-#fsectamxir .gt_heading {
+#cgmvbzyrvq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -459,13 +476,13 @@
   border-right-color: #D3D3D3;
 }
 
-#fsectamxir .gt_bottom_border {
+#cgmvbzyrvq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fsectamxir .gt_col_headings {
+#cgmvbzyrvq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -480,11 +497,11 @@
   border-right-color: #D3D3D3;
 }
 
-#fsectamxir .gt_col_heading {
+#cgmvbzyrvq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
-  font-weight: normal;
+  font-weight: bold;
   text-transform: inherit;
   border-left-style: none;
   border-left-width: 1px;
@@ -500,11 +517,11 @@
   overflow-x: hidden;
 }
 
-#fsectamxir .gt_column_spanner_outer {
+#cgmvbzyrvq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
-  font-weight: normal;
+  font-weight: bold;
   text-transform: inherit;
   padding-top: 0;
   padding-bottom: 0;
@@ -512,15 +529,15 @@
   padding-right: 4px;
 }
 
-#fsectamxir .gt_column_spanner_outer:first-child {
+#cgmvbzyrvq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fsectamxir .gt_column_spanner_outer:last-child {
+#cgmvbzyrvq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fsectamxir .gt_column_spanner {
+#cgmvbzyrvq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -532,11 +549,11 @@
   width: 100%;
 }
 
-#fsectamxir .gt_spanner_row {
+#cgmvbzyrvq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fsectamxir .gt_group_heading {
+#cgmvbzyrvq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -562,7 +579,7 @@
   text-align: left;
 }
 
-#fsectamxir .gt_empty_group_heading {
+#cgmvbzyrvq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -577,15 +594,15 @@
   vertical-align: middle;
 }
 
-#fsectamxir .gt_from_md > :first-child {
+#cgmvbzyrvq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fsectamxir .gt_from_md > :last-child {
+#cgmvbzyrvq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fsectamxir .gt_row {
+#cgmvbzyrvq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -604,7 +621,7 @@
   overflow-x: hidden;
 }
 
-#fsectamxir .gt_stub {
+#cgmvbzyrvq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -617,7 +634,7 @@
   padding-right: 5px;
 }
 
-#fsectamxir .gt_stub_row_group {
+#cgmvbzyrvq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -631,15 +648,15 @@
   vertical-align: top;
 }
 
-#fsectamxir .gt_row_group_first td {
+#cgmvbzyrvq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fsectamxir .gt_row_group_first th {
+#cgmvbzyrvq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fsectamxir .gt_summary_row {
+#cgmvbzyrvq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -649,16 +666,16 @@
   padding-right: 5px;
 }
 
-#fsectamxir .gt_first_summary_row {
+#cgmvbzyrvq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fsectamxir .gt_first_summary_row.thick {
+#cgmvbzyrvq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fsectamxir .gt_last_summary_row {
+#cgmvbzyrvq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -668,7 +685,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#fsectamxir .gt_grand_summary_row {
+#cgmvbzyrvq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -678,7 +695,7 @@
   padding-right: 5px;
 }
 
-#fsectamxir .gt_first_grand_summary_row {
+#cgmvbzyrvq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -688,7 +705,7 @@
   border-top-color: #D3D3D3;
 }
 
-#fsectamxir .gt_last_grand_summary_row_top {
+#cgmvbzyrvq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -698,11 +715,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#fsectamxir .gt_striped {
+#cgmvbzyrvq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fsectamxir .gt_table_body {
+#cgmvbzyrvq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -711,7 +728,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#fsectamxir .gt_footnotes {
+#cgmvbzyrvq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -725,7 +742,7 @@
   border-right-color: #D3D3D3;
 }
 
-#fsectamxir .gt_footnote {
+#cgmvbzyrvq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -734,7 +751,7 @@
   padding-right: 5px;
 }
 
-#fsectamxir .gt_sourcenotes {
+#cgmvbzyrvq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -748,7 +765,7 @@
   border-right-color: #D3D3D3;
 }
 
-#fsectamxir .gt_sourcenote {
+#cgmvbzyrvq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -756,71 +773,73 @@
   padding-right: 5px;
 }
 
-#fsectamxir .gt_left {
+#cgmvbzyrvq .gt_left {
   text-align: left;
 }
 
-#fsectamxir .gt_center {
+#cgmvbzyrvq .gt_center {
   text-align: center;
 }
 
-#fsectamxir .gt_right {
+#cgmvbzyrvq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fsectamxir .gt_font_normal {
+#cgmvbzyrvq .gt_font_normal {
   font-weight: normal;
 }
 
-#fsectamxir .gt_font_bold {
+#cgmvbzyrvq .gt_font_bold {
   font-weight: bold;
 }
 
-#fsectamxir .gt_font_italic {
+#cgmvbzyrvq .gt_font_italic {
   font-style: italic;
 }
 
-#fsectamxir .gt_super {
+#cgmvbzyrvq .gt_super {
   font-size: 65%;
 }
 
-#fsectamxir .gt_footnote_marks {
+#cgmvbzyrvq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fsectamxir .gt_asterisk {
+#cgmvbzyrvq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fsectamxir .gt_indent_1 {
+#cgmvbzyrvq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fsectamxir .gt_indent_2 {
+#cgmvbzyrvq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fsectamxir .gt_indent_3 {
+#cgmvbzyrvq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fsectamxir .gt_indent_4 {
+#cgmvbzyrvq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fsectamxir .gt_indent_5 {
+#cgmvbzyrvq .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
 
 <table class="gt_table" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<caption>Fuente: Boccardo Bosoni y Ruiz Bruzzone, 2019</caption>
 <thead>
-<tr class="header gt_col_headings">
+<tr class="header gt_heading">
+<th colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border">Comparación de herramientas computacionales estadísticas</th>
+</tr>
+<tr class="odd gt_col_headings">
 <th id="Dimensión / Lenguaje" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Dimensión / Lenguaje</th>
 <th id="R" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">R</th>
 <th id="Python" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Python</th>
@@ -831,7 +850,7 @@
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="Dimensión / Lenguaje">Alcance</td>
+<td class="gt_row gt_left" headers="Dimensión / Lenguaje" style="font-weight: bold">Alcance</td>
 <td class="gt_row gt_left" headers="R">General, orientación multidisciplinar</td>
 <td class="gt_row gt_left" headers="Python">General, orientación multidisciplinar</td>
 <td class="gt_row gt_left" headers="SPSS">Limitado, orientado a Ciencias Sociales</td>
@@ -839,7 +858,7 @@
 <td class="gt_row gt_left" headers="Stata">Limitado, orientado a Economía</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Dimensión / Lenguaje">Licencia</td>
+<td class="gt_row gt_left" headers="Dimensión / Lenguaje" style="font-weight: bold">Licencia</td>
 <td class="gt_row gt_left" headers="R">Libre (freeware)</td>
 <td class="gt_row gt_left" headers="Python">Libre (freeware)</td>
 <td class="gt_row gt_left" headers="SPSS">Pagada (versión de prueba limitada)</td>
@@ -847,7 +866,7 @@
 <td class="gt_row gt_left" headers="Stata">Pagada (versión de prueba limitada)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Dimensión / Lenguaje">Aprendizaje</td>
+<td class="gt_row gt_left" headers="Dimensión / Lenguaje" style="font-weight: bold">Aprendizaje</td>
 <td class="gt_row gt_left" headers="R">Sintaxis, poco intuititvo</td>
 <td class="gt_row gt_left" headers="Python">Sintaxis, poco intuititvo</td>
 <td class="gt_row gt_left" headers="SPSS">Botones y sintaxis, intuitivo</td>
@@ -855,7 +874,7 @@
 <td class="gt_row gt_left" headers="Stata">Botones y sintaxis, intuitivo</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Dimensión / Lenguaje">Visualización</td>
+<td class="gt_row gt_left" headers="Dimensión / Lenguaje" style="font-weight: bold">Visualización</td>
 <td class="gt_row gt_left" headers="R">Avanzada</td>
 <td class="gt_row gt_left" headers="Python">Intermedia</td>
 <td class="gt_row gt_left" headers="SPSS">Básica</td>
@@ -863,7 +882,7 @@
 <td class="gt_row gt_left" headers="Stata">Intermedia</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Dimensión / Lenguaje">Análisis de texto</td>
+<td class="gt_row gt_left" headers="Dimensión / Lenguaje" style="font-weight: bold">Análisis de texto</td>
 <td class="gt_row gt_left" headers="R">Intermedio, poca eficiencia</td>
 <td class="gt_row gt_left" headers="Python">Avanzado, amplia eficiencia</td>
 <td class="gt_row gt_left" headers="SPSS">No</td>
@@ -871,7 +890,7 @@
 <td class="gt_row gt_left" headers="Stata">No</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Dimensión / Lenguaje">Minería Datos</td>
+<td class="gt_row gt_left" headers="Dimensión / Lenguaje" style="font-weight: bold">Minería Datos</td>
 <td class="gt_row gt_left" headers="R">Intermedio, poca eficiencia</td>
 <td class="gt_row gt_left" headers="Python">Avanzado, amplia eficiencia</td>
 <td class="gt_row gt_left" headers="SPSS">No</td>
@@ -879,28 +898,34 @@
 <td class="gt_row gt_left" headers="Stata">No</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Dimensión / Lenguaje">Sistema operativo</td>
+<td class="gt_row gt_left" headers="Dimensión / Lenguaje" style="font-weight: bold">Sistema operativo</td>
 <td class="gt_row gt_left" headers="R">Windows, Mac OS, Linux</td>
 <td class="gt_row gt_left" headers="Python">Windows, Mac OS, Linux</td>
 <td class="gt_row gt_left" headers="SPSS">Windows, Mac OS</td>
 <td class="gt_row gt_left" headers="Excel">Windows, Mac OS</td>
 <td class="gt_row gt_left" headers="Stata">Windows, Mac OS</td>
 </tr>
-</tbody>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="6" class="gt_footnote">Fuente: Boccardo Bosoni y Ruiz Bruzzone, 2019</td>
+</tr>
+</tfoot>
+
 </table>
 
 </div>
 </div>
 </div>
 </section>
-<section class="slide level2">
+<section id="section" class="slide level2 center">
+<h2></h2>
 
-</section>
+<img data-src="1.learning-curve.png" class="r-stretch quarto-figure-center"><p class="caption">Una curva de aprendizaje</p></section>
 <section id="vamos-a-r" class="title-slide slide level1 center">
 <h1>Vamos a R</h1>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
-
+<p>Introducción a R y Rstudio</p>
 </div>
 </div>
 </section>
