@@ -4,3 +4,4 @@ Bienvenides al repositorio de Github del taller Introducción a R y Rstudio. En 
 
 Cualquier duda o consulta puedes escribirme al correo benja.adasme.j@gmail.com
 
+Edit desde Arch 
