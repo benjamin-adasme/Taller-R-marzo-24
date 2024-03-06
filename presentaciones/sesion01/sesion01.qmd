@@ -4,82 +4,68 @@ subtitle: "Taller introductorio a R"
 format: 
   kakashi-revealjs:
     footer: "Introducción a R y Rstudio"
-author: 
-  - name: Benjamín Adasme
-  - email: benja.adasme.j@gmail.com
+author: Benjamín Adasme
 date: last-modified
 editor: source
 ---
 
 ## Presentación {.smaller}
 
-:::: {.columns}
-
+::: columns
 ::: {.column width="60%"}
-:::{.nonincremental} 
-
-
-- Sociólogo egresado de la UCM en 2019
-- Dedicado al análisis de datos cuantitativos desde 2021
-- Formación certificada en R y Rstudio
-- Nerd de R y la estadística
-
-
+::: nonincremental
+-   Sociólogo egresado de la UCM en 2019
+-   Dedicado al análisis de datos cuantitativos desde 2021
+-   Formación certificada en R y Rstudio
+-   Nerd de R y la estadística
 :::
 :::
-
 
 ::: {.column width="40%"}
-
-![Quien les habla](foto Benjamín Adasme 2.jpg)
+![Quien les habla](foto%20Benjamín%20Adasme%202.jpg)
 :::
-
-::::
+:::
 
 ## Objetivo general {.center}
 
 Introducir R en personas que analicen datos cuantitativos sin lenguajes de programación.
 
-
-
----
+------------------------------------------------------------------------
 
 ## Específicos {.smaller}
 
-:::{.incremental}
-- Conocer la utilidad de R y las herramientas básicas de R base
-- Conocer tidyverse, para limpieza, manipulación y exploración de datos 
-- Repasar estadísticas descriptiva (uni y multivariada) e inferencial. 
-- Conocer las herramientas de creación de gráficos en R, específicamente ggplot2 y la gramática de gráficos.
-- Conocer herramientas de presentación de datos como Quarto para la difusión y divulgación.
-
+::: incremental
+-   Conocer la utilidad de R y las herramientas básicas de R base
+-   Conocer tidyverse, para limpieza, manipulación y exploración de datos
+-   Repasar estadísticas descriptiva (uni y multivariada) e inferencial.
+-   Conocer las herramientas de creación de gráficos en R, específicamente ggplot2 y la gramática de gráficos.
+-   Conocer herramientas de presentación de datos como Quarto para la difusión y divulgación.
 :::
 
----
+------------------------------------------------------------------------
 
 ## Breve historia {.center}
 
 Comienza su desarrollo en 1993 la U de Auckland. En 1997 sale a la luz en su versión definitiva. Ese mismo año se crea el CRAN que alberga los paquetes y se une al Proyecto GNU de software libre.
 
-Actualmente el desarrollo depende del R Development Core Team. 
+Actualmente el desarrollo depende del R Development Core Team.
 
-En 2011 se publica la primera versión de Rstudio, la IDE más popular para trabajar con R. 
+En 2011 se publica la primera versión de Rstudio, la IDE más popular para trabajar con R.
 
 ## ¿Por qué usar R?
 
-:::{.incremental}
-- Replicabilidad
-- Eficiencia
-- Control
+::: incremental
+-   Replicabilidad
+-   Eficiencia
+-   Control
 :::
 
-## R vs el mundo 
+## R vs el mundo
 
 ```{r}
 #| echo: false
 pacman::p_load(tidyverse, gt, janitor)
 ```
-
 
 ```{r}
 #| echo: false
@@ -94,20 +80,182 @@ gt(t1) %>%
 
 ```
 
-## {.center}
-
+##  {.center}
 
 ![Una curva de aprendizaje](1.learning-curve.png)
 
+## Mis expectativas {.smaller}
 
-## Expectativas
-
+::: incremental
+-   Respeto mutuo y buen trato
+-   Disposición al aprendizaje y motivación
+-   Espíritu colaborativo y no competitivo
+-   Curiosidad
+-   Tolerancia a la frustración y al error
 :::
-- Disposición al aprendizaje
-- Espíritu colaborativo
-- Curiosidad 
-- Tolerancia a la frustración
 
+# Sesión 1
+
+## ¿Qué es R? {.smaller}
+
+
+
+-   Lenguaje de programación.
+-   No hay botones para hacer las cosas
+-   El usuario debe dar las "instrucciones por escrito"
+-   Hay más de una forma de hacer las cosas
+
+
+## {.center}
+
+
+:::{.fragment}
+![Nosotres programando en R por 15 minutos](b0338755257f34868e8809166b7f1836.jpg){width=60%}
+:::
 
 # Vamos a R
+
+
+# Vamos a Rstudio
+
+## Interfaz de Rstudio
+
+![](rstudio-panes-labeled.jpeg){fig-align="center"}
+
+## Elementos de Rstudio
+
+- Consola: inferior izquierda. R puro y duro, donde aparecen los resultados.
+- Fuente: superior izquierda. Donde escribiremos el código. 
+- Ambiente: superior derecha. Almacén de objetos guardados
+- Archivos, visor, paquetes: inferior derecha. Diversas funciones. Indicadas por su nombre.
+
+
+## Rstudio es tan fácil como cocinar
+
+- El código escrito en la sección fuente es nuestra receta
+- La consola es la olla donde se cocinan los alimentos, de donde salen resultados.
+- Los alimentos preparados se albergan en el ambiente, disponibles para que se usen en otra preparación.
+- Algunas preparaciones tienen un emplatado especial, y aparecen como imagenes en nuestra pestaña de gráficos. 
+
+## Rstudio es tan fácil como cocinar
+
+![Ya cómete la maldita naranja](abe.jpeg)
+
+## 
+
+- Calculadora
+
+- Operaciones lógicas
+
+## Operadores lógicos
+
+![¿Había una imagen con peor calidad?](operadores.png)
+
+
+## Sintaxis básica 
+
+:::{.fragment}
+objeto <- función(arg1, arg2, ...)
+:::
+
+
+:::{.fragment}
+
+```{r}
+
+objeto1 = 2 + 2
+
+```
+:::
+
+:::{.fragment}
+
+¿Cual es el valor de `objeto1`?
+:::
+
+:::{.fragment}
+```{r}
+
+objeto1
+
+```
+:::
+
+## Otro ejemplo
+
+```{r}
+
+43 / 8
+
+```
+:::{.callout-warning}
+## Importante
+
+El punto sirve para indicar decimal, la coma para enumerar elementos. El uso de coma para indicar un decimal en el código generará errores.
+:::
+
+## Otro otro ejemplo
+
+```{r}
+frutas <- c("manzana", "pera", "naranja")
+```
+
+En este caso la `,` sirve para enumerar elementos. 
+
+
+## Un pequeño detalle
+
+En el código 
+
+```{r}
+frutas <- c("manzana", "pera", "naranja")
+```
+
+Hay una función que no conocemos...
+
+## {.center}
+
+La función `c()` sirve para combinar elementos en uno solo, creando...
+
+Vectores (que veremos más adelante)
+
+## Clases de objetos en R {.smaller}
+
+- Numérico (*numeric*): número con decimales (`4.5 , 6.0009`)
+- Entero (*integer*): número entero sin decimales (`120, 2L`)
+- Cadena (*character*): texto. Se indica usando comillas (`"texto", "lápiz", "23"`)
+- Lógico (*logical*): predeterminados. Definen operaciones lógicas (`TRUE`, `FALSE`, `NA`, `NULL`)
+
+La función `class()` nos indica la clase de un objeto
+
+
+## {.center}
+
+Veamos algunos ejemplos en R
+
+
+# Estructuras de datos
+
+## Vector
+
+- Conjunto de elementos del mismo tipo
+- Pueden ser "llamados" por un nombre arbitrario
+- Ese nombre representa los valores que contiene en cualquier otro lugar
+- Se alberga en el ambiente como cualquier objeto
+
+## Matriz
+
+- Arreglo de números con una dimensión definida en filas y columnas
+- Útil en matemáticas
+
+```{r}
+matrix(1:6, nrow = 3, ncol = 2)
+```
+
+## Data frame
+
+- El sagrado data frame
+- Datos en formato tabla. Contiene filas y columnas. 
+- Las columnas son vectores. Las filas son observaciones
+- Las columnas pueden ser de diferente tipo
 
