@@ -122,30 +122,33 @@ gt(t1) %>%
 
 ![](rstudio-panes-labeled.jpeg){fig-align="center"}
 
-## Elementos de Rstudio
+## Elementos de Rstudio {.smaller}
 
 - Consola: inferior izquierda. R puro y duro, donde aparecen los resultados.
-- Fuente: superior izquierda. Donde escribiremos el código. 
+- Editor de código: superior izquierda. Donde escribiremos el código de R y otros lenguajes. 
 - Ambiente: superior derecha. Almacén de objetos guardados
-- Archivos, visor, paquetes: inferior derecha. Diversas funciones. Indicadas por su nombre.
+- Visor: inferior derecha. Visor de archivos, gráficos, paquetes, ayuda, entre otros. 
 
 
-## Rstudio es tan fácil como cocinar
+## Rstudio es como cocinar {.smaller}
 
 - El código escrito en la sección fuente es nuestra receta
 - La consola es la olla donde se cocinan los alimentos, de donde salen resultados.
 - Los alimentos preparados se albergan en el ambiente, disponibles para que se usen en otra preparación.
 - Algunas preparaciones tienen un emplatado especial, y aparecen como imagenes en nuestra pestaña de gráficos. 
+- Los archivos son nuestra despensa, los paquetes nuestros implementos de cocina.
 
-## Rstudio es tan fácil como cocinar
+## Rstudio es como pelar una naranja
 
 ![Ya cómete la maldita naranja](abe.jpeg)
 
 ## 
 
+Hasta ahora hemos usado R como
+
 - Calculadora
 
-- Operaciones lógicas
+- Operador lógico
 
 ## Operadores lógicos
 
@@ -221,41 +224,260 @@ Vectores (que veremos más adelante)
 
 ## Clases de objetos en R {.smaller}
 
-- Numérico (*numeric*): número con decimales (`4.5 , 6.0009`)
+- Doble/flotante (*numeric* o *double*): número con decimales (`4.5 , 6.0009`)
 - Entero (*integer*): número entero sin decimales (`120, 2L`)
 - Cadena (*character*): texto. Se indica usando comillas (`"texto", "lápiz", "23"`)
 - Lógico (*logical*): predeterminados. Definen operaciones lógicas (`TRUE`, `FALSE`, `NA`, `NULL`)
+- Factor (*factor*): cadenas con un nivel determinado. Útil para variables categóricas. 
+
+
+## {.center}
 
 La función `class()` nos indica la clase de un objeto
+Las funciones `is.[tipo]` son pruebas que definen si un objeto cumple o no con una condición.
+
+```{r}
+
+x = 8
+
+is.numeric(x)
+
+
+```
+```{r}
+is.character(x)
+```
+
 
 
 ## {.center}
 
 Veamos algunos ejemplos en R
 
+## Factores
+
+```{r}
+#| code-line-numbers: "1|3|5"
+
+genero <- c(1, 3, 2, 3, 1, 2, 2, 3)
+
+genero_fact <- factor(genero, labels = c("Masc", "Fem", "NoBin"))
+
+genero_fact
+
+
+
+```
+. . .
+
+::: {.callout-note}
+
+## Nota
+Al llamar la variable de factor no nos imprime los números, sino que las etiquetas que hemos asignado. Para conocer los niveles asociados podemos usar la función `levels()`
+:::
+
+
+## Pregunta
+
+¿A y B son iguales? ¿Son diferentes? ¿Por qué?
+
+```{r}
+
+A <- 34
+
+B <- "34"
+
+```
+
+
+## 
+
+La respuesta, en teoría es **NO**, pero ...
+
+. . .
+
+```{r}
+
+A == B
+
+```
+¿Por qué sucede?
+
+. . .
+
+Al comparar dos vectores de un solo elemento, R modifica automáticamente uno de los dos a la clase del otro. En este caso, al comparar A igual a B, R transforma B en numérico. Por ello, son iguales. 
+
+
+
 
 # Estructuras de datos
 
-## Vector
+## Vector {.smaller}
 
 - Conjunto de elementos del mismo tipo
 - Pueden ser "llamados" por un nombre arbitrario
 - Ese nombre representa los valores que contiene en cualquier otro lugar
 - Se alberga en el ambiente como cualquier objeto
+- Se componen principalmente con la función `c()` que puede significar "combinar" o concatenar"
 
-## Matriz
+##
+
+Los vectores se pueden seleccionar con los corchetes `[ ]`
+
+. . .
+
+```{r}
+vec1 <- seq(0, 10, by = 2) #secuencia numérica
+
+vec1
+```
+. . .
+
+```{r}
+vec1[1]
+```
+
+
+. . . 
+
+```{r}
+vec1[2:3]
+```
+. . .
+
+```{r}
+vec1[vec1 >= 6]
+
+```
+
+
+
+## Lista {.smaller}
+
+
+- Estructura que permite agrupar diversos tipos de datos en un solo objeto.
+- Se crean con la función `list()`
+- Poco usado pero útil con algunas funciones
+
+. . .
+
+```{r}
+lista1 <- list(nombre = "Juan",
+               edad = 35,
+               intereses = "estadística", "deportes", "música")
+
+
+lista1["nombre"]
+
+```
+
+
+
+## Matriz {.smaller}
 
 - Arreglo de números con una dimensión definida en filas y columnas
 - Útil en matemáticas
+- Base para el siguiente tipo de estructura
 
+. . .
 ```{r}
 matrix(1:6, nrow = 3, ncol = 2)
 ```
 
-## Data frame
+## Data frame {.smaller}
 
-- El sagrado data frame
+- El tipo de objeto más común en R.
 - Datos en formato tabla. Contiene filas y columnas. 
 - Las columnas son vectores. Las filas son observaciones
-- Las columnas pueden ser de diferente tipo
+- Las columnas, por tanto, pueden ser de diferente tipo o clase entre ellas, pero del mismo tipo internamente. 
+
+##
+
+```{r}
+df <- data.frame(var1 = 1:4,
+                 var2 = c("a", "b", "c", NA),
+                 otro_nom = c(TRUE, TRUE, FALSE, TRUE))
+
+rmarkdown::paged_table(df)
+
+```
+
+## {.smaller}
+
+Los data frame también se pueden dividir con los corchetes `[ ]`
+
+Dentro del corchete el primer número representa las filas y el segundo las columnas. 
+
+. . . 
+
+Seleccionamos toda la fila 1. Al dejar vacío después de la coma indicamos que queremos todas las columnas.
+
+```{r}
+
+df[1,]  
+```
+. . .
+
+Seleccionamos toda la columna 3. Al dejar vacío el número antes de la coma, indicamos todas las filas.
+
+```{r}
+df[,3]  
+```
+
+. . .
+
+Seleccionamos la fila 4 y la columna 2
+
+```{r}
+
+df[4,2] 
+
+```
+##
+
+También podemos seleccionar las variables de un data frame utilizando el signo `$`
+
+```{r}
+
+df$var1
+
+```
+
+
+
+O utilizando un doble corchete
+
+```{r}
+
+df[["otro_nom"]]
+
+```
+:::{.callout-note}
+## Nota
+Al usar `$` o `[[ ]]` el botón {{< kbd Tab >}} nos mostrará las variables disponibles.
+:::
+
+## Tibble
+
+- Evolución del data frame, pero en el tidyverse (contenido de la próxima sesión)
+
+## {.center}
+
+Apliquemos lo aprendido
+
+# Funciones básicas
+
+## Funciones base vs funciones de paquetes
+
+R como lenguaje se compone de diferentes paquetes. El principal es el paquete "base" que contiene la mayoría de las funciones elementales de R
+
+Más adelante aprenderemos a cargar nuevos paquetes y sumar nuevas funciones.
+
+## Funciones para manejar vectores
+
+## Funciones matemáticas básicas
+
+## Funciones estadísticas básicas
+
+# Desafío sesión 1
 
