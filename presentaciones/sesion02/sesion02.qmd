@@ -1,0 +1,286 @@
+---
+title: "Sesión 2 - Tidyverse y herramientas para datos"
+subtitle: "Taller introductorio a R"
+format: 
+  kakashi-revealjs:
+    footer: "Introducción a R y Rstudio"
+author: Benjamín Adasme
+date: last-modified
+editor: source
+---
+
+## Recapitulando
+
+- Sintaxis básica de R
+- Tipos de archivos y estructuras de datos
+- Funciones básicas
+
+## Solución desafío 1
+
+
+
+
+# Sesión 2
+
+## Paquetes o packages
+
+Una ventaja de R es su gran comunidad que desarrolla mejoras y utilidades que quedan a disposición de forma gratuita.
+
+Estos se difunden como "paquetes", con su propio nombre, y que contienen funciones, datos u otros para agregar o mejorar funciones de R.
+
+La gran mayoría se alberga en CRAN, otros en servidores como Github.
+
+## {.smaller}
+
+- Para instalar un paquete utilizamos la función `install.packages()` solo la primera vez que utilicemos ese paquete. Luego de esto queda instalado en nuestro equipo. 
+
+- Pero para usarlo debemos utilizar otra función llamada `library()`, que activa el paquete en la sesión actual.
+
+- Alternativamente, podemos usar una función de un paquete instalado sin activarlo en la sesión, usando `::`. Ejemplo: `readr::read_csv(...)`. Solo es útil cuando es explícito que se use la función de ese paquete y no otra. 
+
+## Ejemplo
+
+Vamos a instalar un paquete útil que se llama *janitor* y sirve para limpiar datos.
+
+Primero lo instalamos desde CRAN
+
+```{r}
+#| eval: false
+install.packages("janitor") #siempre con comillas
+```
+
+Una vez instalado se "invoca" o se activa en la sesión para usarlo
+
+```{r}
+library(janitor) #No es necesario poner las comillas 
+```
+
+
+## Introducción al tidyverse
+
+:::: columns
+
+:::{.column width="60%"}
+- Grupo de paquetes para la ciencia de datos en R
+- Paradigma de programación en R
+- Desarrollado por Posit (igual que Rstudio)
+:::
+
+:::{.column width="40%"}
+
+
+![](imagenes/tidyverse.png)
+
+:::
+::::
+
+
+
+
+## Formato ordenado o "tidy"
+
+Es un concepto en tidyverse para trabajar con datos rectangulares
+
+- Cada variable debe tener su propia columna.
+- Cada observación debe tener su propia fila.
+- Cada valor debe tener su propia celda.
+
+
+## {.center}
+
+![](imagenes/tidy-1.svg)
+
+## R para ciencia de datos
+
+![Flujo de trabajo en ciencia de datos. Wickham & Grolemund, 2023](imagenes/data-science.svg)
+
+## Núcleo de tidyverse
+
+![](imagenes/tidy_workflow.png)
+
+
+## Paquetes y funciones clave {.center}
+
+## Importar datos
+
+```{r}
+#| echo: false
+
+library(gt)
+library(tidyverse)
+
+imp <- readxl::read_xlsx("data/funciones_tidyverse.xlsx", sheet = 1)
+
+
+
+
+```
+```{r}
+#| echo: false
+
+imp %>% 
+  gt() %>% 
+  opt_stylize(4) %>% 
+  tab_header(title = "¿Cómo cargar archivos en R?") %>% 
+  tab_options(table.width = pct(100), table.font.size = pct(80))
+
+```
+
+## Dar formato a los datos
+
+```{r}
+#| echo: false
+
+readxl::read_xlsx("data/funciones_tidyverse.xlsx", sheet = 2) %>% 
+  gt() %>% 
+  tab_options(table.width = pct(100), table.font.size = pct(80)) %>% 
+  opt_stylize(4)
+```
+
+
+
+## Tareas de limpieza
+
+- Renombrar columnas a nombres más eficientes. Puede ser con `rename()` de dplyr o con la mágica `clean_names()` de janitor.
+- Revisar que los formatos hayan sido correctamente importados
+- Eliminar columnas sin información o redundantes
+
+
+
+
+
+## Transformar o "domar" datos {.smaller}
+
+
+- Filtrar o elegir las observaciones por sus valores (`filter()` — del inglés filtrar).
+- Reordenar las filas (`arrange()` — del inglés organizar).
+- Seleccionar las variables por sus nombres (`select()` — del inglés seleccionar).
+- Crear nuevas variables con transformaciones de variables existentes (`mutate()` — del inglés mutar o transformar).
+- Contraer muchos valores en un solo resumen (`summarise()` — del inglés resumir).
+
+::: footer
+
+Wickham & Grolemund, 2023
+
+:::
+
+## dplyr
+
+- Es el paquete por defecto para manipular datos en R. Las funciones antes mencionadas son parte de dplyr. 
+- Se suma a otros paquetes específicos para tratar ciertos tipos de datos
+
+![](imagenes/dplyr.jpeg){fig-align="center"} 
+
+## {.center}
+
+Todas estas funciones se pueden aplicar de manera agrupada con la función `group_by()`. Queda mejor cuando la usamos con `summarise()`
+
+
+
+
+
+
+## Pipas o tuberías
+
+:::: columns
+
+:::{.column width="60%"}
+
+El comando pipe reduce la redundancia de crear demasiados objetos para un fin. 
+
+Encadena las funciones una dentro de otra
+
+Existe el pipe de magrittr ` %>% ` y el pipe nativo `|>`
+
+:::
+
+:::{.column width="40%"}
+
+
+![](imagenes/magrittr.png)
+
+:::
+
+::::
+
+## Forma tradicional
+
+```{r}
+pinguinos <- palmerpenguins::penguins
+
+summary(pinguinos)
+
+```
+
+## 
+
+```{r}
+
+ping_fil <- filter(pinguinos, year == 2008)
+
+
+ping_orden <- arrange(ping_fil, body_mass_g)
+
+ping_nuevo <- mutate(ping_orden, peso_kg = body_mass_g/1000)
+
+
+summary(ping_nuevo$peso_kg)
+
+```
+
+Se crean tres objetos distintos para lograr el resultado
+
+## Con pipes
+
+```{r}
+
+ping_2 <- pinguinos %>% 
+  filter(year == 2008) %>% 
+  arrange(body_mass_g) %>% 
+  mutate(peso_kg = body_mass_g/1000)
+```
+
+Se crea un solo objeto. 
+
+"Trae los datos de pingüinos, **LUEGO** filtra por año == 2008, **LUEGO** ordena de menor a mayor según masa corporal, y **LUEGO** crea una nueva variable transformando la masa de gramos a kilogramos"
+
+## Último ejemplo: group_by
+
+```{r}
+
+ping_2 %>% 
+  group_by(species) %>% 
+  summarise(aleta_prom_mm = mean(flipper_length_mm, na.rm = T))
+
+```
+
+
+
+# Ejercicio aplicado
+
+## Configuramos Rstudio
+
+- Setear algunas opciones del programa en Tools -> Global Options
+
+- Usar Rstudio Projects
+
+## En Rstudio
+
+- Vamos a cargar un dataset
+- Trabajaremos ahora las funciones aprendidas.
+
+
+# Desafío 2
+
+## Desafío de la sesión
+
+Vamos a importar un dataset real, lo vamos a limpiar y luego a transformar. 
+
+Repetiremos el ejercicio de la clase, ahora otras variables que no incluimos en el ejercicio de la clase. 
+
+
+## {.smaller}
+
+1. Elegir dataset de Encuesta CEP o penguins
+2. Usar al menos 3 de las 6 funciones básicas de manipulación de datos: select, filter, summarise, mutate, group_by o arrange
+3. El resultado debe ser un cuadro resumen de alguna de las variables (tabla de frecuencia o resumen de estadísticos descriptivos)

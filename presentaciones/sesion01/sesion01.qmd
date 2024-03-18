@@ -64,7 +64,7 @@ En 2011 se publica la primera versión de Rstudio, la IDE más popular para trab
 
 ```{r}
 #| echo: false
-pacman::p_load(tidyverse, gt, janitor)
+pacman::p_load(tidyverse, gt)
 ```
 
 ```{r}
@@ -138,7 +138,7 @@ gt(t1) %>%
 - Algunas preparaciones tienen un emplatado especial, y aparecen como imagenes en nuestra pestaña de gráficos. 
 - Los archivos son nuestra despensa, los paquetes nuestros implementos de cocina.
 
-## Rstudio es como pelar una naranja
+## Rstudio es como comer una naranja
 
 ![Ya cómete la maldita naranja](abe.jpeg)
 
@@ -157,39 +157,57 @@ Hasta ahora hemos usado R como
 
 ## Sintaxis básica 
 
-:::{.fragment}
-objeto <- función(arg1, arg2, ...)
-:::
 
 
-:::{.fragment}
+`objeto <- función(arg1, arg2, ...)` 
+
+. . . 
+
+
 
 ```{r}
 
 objeto1 = 2 + 2
 
 ```
-:::
 
-:::{.fragment}
+. . .
+
+
 
 ¿Cual es el valor de `objeto1`?
-:::
 
-:::{.fragment}
+. . .
+
+
 ```{r}
 
 objeto1
 
 ```
-:::
+. . . 
+
+Importante que al usar el asignador `<-` ambas partes deben quedar unidas. Usar
+` < -` con un espacio entremedio no sirve para asignar.
+
+##
+
+Al asignar nombres a objetos debemos considerar que:
+
+- R es sensible a las mayúsculas y minúsculas.  `f` =/= `F`
+- No pueden comenzar con números
+- No deben contener espacios. Se debe usar _ como separador 
+
+
+
 
 ## Otro ejemplo
 
 ```{r}
 
-43 / 8
+division <- 43 / 8
 
+division
 ```
 :::{.callout-warning}
 ## Importante
@@ -475,9 +493,241 @@ Más adelante aprenderemos a cargar nuevos paquetes y sumar nuevas funciones.
 
 ## Funciones para manejar vectores
 
+
+
+```{r}
+y <- c(23, 42, -23, 0, 50, -4, 0)
+
+sort(y) #ordena vectores
+```
+```{r}
+rev(y) #Invierte el orden del vector
+```
+
+
+## 
+
+```{r}
+
+z = c("mesa", "silla", "mesa", "plato", "plato")
+
+table(z) #Frecuencias de elementos
+
+```
+
+```{r}
+unique(z) #Valores únicos del vector
+```
+
+
+```{r}
+length(z) #Cantidad de elementos del vector
+```
+
+
+
 ## Funciones matemáticas básicas
+
+
+
+```{r}
+sum(y) #Suma de los elementos
+
+```
+```{r}
+
+#Mínimo y máximo del vector
+min(y)
+max(y)
+```
+
+
+##
+
+
+
+```{r}
+
+round(4.7863834345, 3)
+
+```
+
+
+```{r}
+
+sqrt(64)
+
+```
+
+```{r}
+log(100, base = 10)
+```
+
+
 
 ## Funciones estadísticas básicas
 
+
+
+Promedio o media:
+
+```{r}
+
+mean(y)
+
+```
+
+Mediana
+
+```{r}
+
+median(y)
+
+```
+
+##
+
+
+Varianza
+
+```{r}
+var(y)
+```
+Desviación típica o estándar
+
+```{r}
+
+sd(y)
+
+```
+
+##
+
+Cuantiles de una distribución numerica
+
+```{r}
+quantile(y)
+```
+
+Correlación (Pearson)
+
+```{r}
+t <- c(6, 7, 1, 3, 9, 1, 1)
+
+cor(t, y)
+
+```
+Correlación de Spearman
+
+```{r}
+
+cor(t,y, 
+    method = "spearman")
+
+```
+##
+
+Generar una distribución normal aleatoria
+
+```{r}
+set.seed(123)
+
+rnorm(30)
+
+```
+##
+
+```{r}
+hist(rnorm(30))
+```
+
+
+## Funciones de data frame
+
+Permiten conocer las dimensiones de un data frame
+
+```{r}
+nrow(df)
+```
+
+```{r}
+ncol(df)
+```
+
+
+
+```{r}
+dim(df)
+```
+##
+
+`cbind()` une vectores a un data frame
+
+```{r}
+vec2 <- c(0, 0, 1, 1)
+
+cbind(df, vec2)
+
+```
+
+##
+
+`rbind()` une una fila de un data frame a otro. Para ello ambos objetos deben tener los mismos nombres de variables y del mismo tipo o clase
+
+
+```{r}
+
+df_2 <- data.frame(var1 = 5,
+                   var2 = "e",
+                   otro_nom = FALSE)
+
+
+rbind(df, df_2)
+
+```
+
+##
+
+La función `head()` nos permite ver las primeras 6 filas de un data frame. Útil para explorar 
+
+```{r}
+
+head(mtcars[,1:10])
+
+```
+
+La función `View()` nos permite ver un data frame en otra pestaña de Rstudio
+
+
+
 # Desafío sesión 1
 
+
+## Primer desafío del curso {.smaller}
+
+:::nonincremental
+1. Crear 5 vectores, uno correspondiente cada clase de objetos que revisamos, y guardarlos por separado. Deben tener una longitud mínima de 6 elementos. El nombre de cada objeto debe indicar su clase (ej. vector_numero, obj_log, vcadena, etc. )
+
+2. Usar la función `class()` para comprobar la clase de los 5 vectores.
+
+3. Crear un data frame con los 5 vectores. Calcular las dimensiones del data frame y usar tres funciones estadísticas en alguna de sus variables numéricas. 
+:::
+
+# Resumen del día
+
+## ¿Qué aprendimos?
+
+
+## Cierre 1: configurando Rstudio
+
+![](r+rstudio.jpeg)
+
+
+## Cierre 2: material complementario
+
+{{< video https://youtu.be/QJCt9GNCD1M?si=_Xr88xzFT68SNDKe width="80%" height="80%" >}}
+
+
+##
+
+![Cheatsheet de R base](cheatsheet1.png)

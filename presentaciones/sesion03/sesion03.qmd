@@ -1,0 +1,204 @@
+---
+title: "Sesión 3 - Gráficos en R con ggplot2"
+subtitle: "Taller introductorio a R"
+format: 
+  kakashi-revealjs:
+    footer: "Introducción a R y Rstudio"
+author: Benjamín Adasme
+date: last-modified
+editor: source
+---
+
+## Recapitulando
+
+- Sintaxis, tipos de datos y funciones
+- Tidyverse y familia de paquetes
+- Manipulación de datos ordenados con tidyverse
+
+## Solución desafío 2
+
+Solución enviada por mail 
+
+# Sesión 3
+
+## ¿Por qué graficar los datos?
+
+![Cuarteto de Anscombe](imagenes/Anscombe.svg)
+
+
+
+
+##
+
+![Docena de Datazaurus](imagenes/DinoSequentialSmaller.gif)
+
+## {.center}
+
+Es necesario graficar porque los estadísticos típicos, por si solos, pueden ser insuficientes para conocer la distribución, comportamiento, relación u otras características de los datos.
+
+## {.center}
+
+El objetivo de cualquier visualización es permitir al receptor comprender los datos y extraer información de manera **intuitiva**, **eficiente** y **precisa**
+
+
+## Una visualización de datos efectiva... {.smaller}
+
+- Capta la atención
+- Mejora el acceso a la información
+- Aumenta la precisión
+- Refuerza la credibilidad
+- Resume el contenido
+
+::: footer
+
+Krause, Rennnie & Royal Statistical Society, 2024
+
+
+:::
+
+## El bueno, el malo y el feo
+
+![Experto en gráficos](imagenes/piñera_grafico.png)
+
+##
+
+![Buenos porcentajes oye](imagenes/graficos-1024x529.jpg)
+
+
+##
+
+![¿Cómo va nuestra campaña? Se eleva majestuosamente, señor](imagenes/presidenciales.jpeg)
+
+
+##
+
+![Gráfico de áreas polares “Diagram of the causes of mortality in the army in the East”, de Florence Nightingale](imagenes/Nightingale-mortality.jpg)
+
+
+##
+
+![Casos de cólera en Londres, John Snow (1854)](imagenes/Snow-cholera-map.jpg)
+
+
+## 
+
+![Marcha de Napoleón sobre Moscú. Ejemplo de visualización de espacio y tiempo](imagenes/Minard.png) 
+
+
+## Tips para una iniciar una visualización
+
+- Comprender al receptor y determinar el objetivo de visualizar
+- Conocer el medio de difusión
+- Conocer los datos y sus características
+
+
+## Tipos de datos y visualización {.smaller}
+
+- Numéricos
+- Categóricos (ordinales y nominales)
+- Numéricos y categóricos
+- Mapas
+- Redes
+- Series de tiempo
+
+## {.center}
+
+
+
+![Sitio *From data to viz*: www.data-to-viz.com [Enlace](https://www.data-to-viz.com/)](https://royal-statistical-society.github.io/datavisguide/docs/images/choosing-data-to-viz.png)
+
+# Gráficos en R
+
+## Gráficos en R base
+
+- Sistema de gráficos incorporado en R base. Paquete `graphics`
+- Minimalista, o un poco arcaico. 
+
+```{r}
+#| echo: false
+
+pinguinos <- palmerpenguins::penguins
+```
+
+
+
+```{r}
+#| output-location: slide
+plot(pinguinos)
+
+```
+
+
+
+##
+
+```{r}
+hist(pinguinos$body_mass_g)
+```
+
+
+## Ggplot2
+
+:::: columns
+
+:::{.column width="60%"}
+
+Parte de tidyverse. Herramienta de visualización basada en la gramática de los gráficos
+
+Construye los gráficos a partir 7 elementos, de los cuales los 3 primeros son los básicos.
+:::
+
+:::{.column width="40%"}
+
+![](imagenes/ggplot2.png)
+
+:::
+
+:::: 
+
+## {.center}
+
+![Partes de un gráfico en ggplot2](imagenes/overview_graphic-1.png)
+
+
+## Capas o niveles de ggplot2 {.smaller}
+
+1. Datos: necesita de un data.frame o tibble
+2. Variables a mapear o dibujar (aesthetics)
+3. Capas: centro del gráfico, dibuja los datos con una geometría específica.
+4. Escalas: permiten mejorar la representación de las geometrías y los datos
+5. Facetas: dividen los gráficos en grupos más pequeños
+6. Coordenadas: ordenan las dimensiones del gráfico
+7. Temas: configuraciones visuales sobre los detallitos del gráfico
+
+## {.center}
+
+Los datos, las variables y las geometrías son lo básico para crear un gráfico con *ggplot2*
+
+##
+
+```{r}
+#| code-line-numbers: "1|3|4|5"
+
+library(ggplot2) # Cargamos el paquete
+
+ggplot(data = pinguinos, # Datos a trabajar
+       aes(x = bill_length_mm, y = bill_depth_mm, color = species)) + # Variables a mapear
+  geom_point() # Geometría a usar
+
+```
+
+
+# Ejercicio
+
+## Creando gráficos desde 0
+
+Objetivo: crear tres gráficos con ggplot2
+
+1. Gráfico de barras
+2. Gráfico de cajas/puntos/violín
+3. Gráfico de líneas o serie de tiempo
+
+## {.center}
+
+**¡Vamos a R!**
