@@ -1,0 +1,398 @@
+---
+title: "Sesión 4 - Publicando resultados con Quarto"
+subtitle: "Taller introductorio a R"
+format: 
+  kakashi-revealjs:
+    footer: "Introducción a R y Rstudio"
+author: Benjamín Adasme
+date: last-modified
+editor: source
+---
+
+## Recapitulando
+
+- Sintaxis, tipos de datos y funciones
+- Tidyverse y familia de paquetes
+- Manipulación de datos ordenados con tidyverse
+- Creación de gráficos en ggplot2
+
+# Sesión 3
+
+## De R al mundo
+
+Todo bien con R pero...
+
+¿Cómo sacamos las cosas desde R al mundo?
+
+## Opciones sencillas para tablas
+
+Para exportar tablas usamos el paquete `writexl`
+
+```{r}
+
+#install.packages("writexl")
+
+library(writexl)
+
+```
+
+El paquete `openxlsx` también ofrece alternativas similares
+
+##
+
+```{r} 
+#| echo: false
+pacman::p_load(tidyverse)
+
+pinguinos <- palmerpenguins::penguins
+
+```
+
+```{r} 
+#| eval: false
+tabla_res <- pinguinos %>% 
+  group_by(species) %>% 
+  summarise(masa_corp = mean(body_mass_g, na.rm = T))
+
+write_xlsx(tabla_res, "ruta/donde/instalar/archivo.xlsx")
+
+```
+
+## Opciones sencillas para gráficos
+
+Los gráficos se pueden exportar con la función `ggsave()`
+
+```{r}
+#| output-location: slide
+
+grafico1 <- pinguinos %>%
+  ggplot(aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot(alpha = 0.5) +
+  geom_jitter(width = 0.15, shape = 21) +
+  scale_fill_viridis_d() +
+  labs(x = "Especies",
+       y = "Masa corporal (g)") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+grafico1
+```
+
+##
+
+Para guardar el gráfico debemos utilizar la función `ggsave()` junto con las especificaciones del formato (jpg, png, svg) y las dimensiones de tamaño.
+
+```{r}
+
+ggsave("imagenes/nombredelgrafico.png", grafico1, 
+       width = 10, #Por defecto se miden en pulgadas
+       height = 7)
+
+```
+
+
+![](imagenes/nombredelgrafico.png)
+
+##
+
+Sin embargo, estas son formas útiles cuando queremos exportar algún objeto puntual. Si todo nuestro trabajo se realiza en R, es mejor buscar alternativas más integrales.
+
+## RMarkdown {.smaller}
+
+:::: columns
+
+:::{.column width="60%"}
+
+- Herramienta de procesamiento de texto que integra código de R.
+- Permite publicar documentos (html, pdf, docx) y presentaciones (html,ppt)
+- Basado en el lenguaje de marcado Markdown para procesamiento de texto
+- Exclusivo para R en Rstudio
+:::
+
+:::{.column width="40%"}
+
+![](imagenes/rmarkdown_logo.png){fig-align="center"}
+
+:::
+
+::::
+
+
+## Quarto {.smaller}
+
+:::: columns
+:::{.column width="60%"}
+
+- Es la evolución de Rmarkdown, ya que integra mejores herramientas
+- Ejecuta código de otros lenguajes como python, julia, entre otros.
+- Corre en Rstudio, VS Code, NeoVIM, Jupyter Notebooks 
+:::
+
+:::{.column width="40%"}
+
+![](imagenes/quarto-logo.png)
+
+:::
+
+::::
+
+## {.center}
+
+![Así se procesa un archivo .qmd de Quarto hacia su salida en el formato deseado](imagenes/rstudio-qmd-how-it-works.png)
+
+
+## Markdown
+
+Lenguaje de marcado que integra una codificación especial para dar formato de forma sencilla y directa. 
+
+Entrega las herramientas básicas para texto reproducible.  
+
+Usado por Rmarkdown y Quarto
+
+
+
+## Estilo
+
+El texto básico se puede modificar con diferentes signos interpretables para un procesador de markdown
+
+
+:::: columns
+:::{.column width="50%"}
+
+```
+Mi **perrita** es muy *bonita*, es ***Alba***
+
+potencia^2^ o subíndice~2~
+
+~~texto tachado~~
+
+`bloque de código`
+
+
+```
+:::
+
+:::{.column width="50%"}
+
+Mi **perrita** es muy *bonita*, es ***Alba***
+
+potencia^2^ o subíndice~2~
+
+~~texto tachado~~
+
+`bloque de código`
+
+:::
+
+::::
+
+## Títulos
+
+Los títulos tienen diferentes niveles que se identifican con `#`
+
+```
+# Título principal
+## Título 2
+### Título 3
+#### Título 4
+
+```
+
+## Listas {.smaller}
+
+:::: columns
+
+:::{.column width="50%"}
+```
+
+* lista no ordenada
+    + sub-item 1
+    + sub-item 2
+        - sub-sub-item 1
+
+```
+:::
+
+:::{.column width="50%"}
+:::{.nonincremental}
+* lista no ordenada
+    + sub-item 1
+    + sub-item 2
+        - sub-sub-item 1
+:::
+:::
+
+::::
+
+## {.smaller}
+
+:::: columns
+
+:::{.column width="50%"}
+```
+
+1. lista ordenada
+2. item 2
+    i) sub-item 1
+         A.  sub-sub-item 1
+
+```
+:::
+
+:::{.column width="50%"}
+:::{.nonincremental}
+1. lista ordenada
+2. item 2
+    i) sub-item 1
+         A.  sub-sub-item 1
+:::
+:::
+::::
+
+## Enlaces e imágenes
+
+
+```
+
+[Enlace a Github](https://github.com/benjamin-adasme/Taller-R-marzo-24/)
+
+![Un logo](imagenes/quarto-logo.png)
+
+```
+
+
+[Enlace a Github](https://github.com/benjamin-adasme/Taller-R-marzo-24/)
+
+![Un logo](imagenes/quarto-logo.png)
+
+
+# Usando Quarto
+
+## Estructura básica: YAML header
+
+Define la configuración global del documento. Puede tener diferentes opciones dependiendo del tipo de doc. Ejemplo básico:
+
+```
+
+---
+title: "Hello, Quarto"
+format: html
+editor: visual
+---
+
+```
+
+## Estructura básica: bloques de código
+
+Son los espacios donde insertamos nuestro código. Quarto los diferencia del texto plano con los triple acentos
+
+```{r}
+#| echo: fenced
+#| label: mi-code-chunk
+
+
+print("Hola mundo")
+
+```
+
+
+## Estructura básica: markdown
+
+El formato markdown está incorporado, pero se puede editar el texto en modo "source" o "visual"
+
+
+## Rstudio Projects {.smaller}
+
+Para trabajar en Quarto lo más recomendado es usar Rstudio Projects, ya que nos ayudan a ordenar nuestros documentos y recursos necesarios.
+
+:::{.nonincremental}
+- Carpeta madre (donde parte el proyecto)
+  + archivo qmd
+  + data (bases de datos)
+  + imagenes (a usar en el proyecto)
+  + salidas (para guardar outputs)
+
+:::
+
+## {.center}
+
+**¡Vamos a R!**
+
+# Extra: paquete gt
+
+## gt: great tables
+
+:::: columns
+
+:::{.column width="60%"}
+**gt** es el paquete análogo a ggplot2, pero para tablas. Utiliza también una lógica de capas para producir diseños amigables y atractivos para visualizar datos tabulares.
+:::
+
+:::{.column width="40%"}
+![](imagenes/gt.jpeg)
+:::
+
+::::
+
+## {.center}
+
+![Flujo de trabajo de gt](imagenes/gt_workflow_diagram.svg)
+
+## gt en funcionamiento
+
+```{r}
+
+res_ping <- pinguinos %>% 
+  filter(!is.na(sex)) %>% 
+  group_by(species, sex) %>% 
+  summarise(bill_length_mean = mean(bill_length_mm, na.rm = T),
+            bill_depth_mean = mean(bill_depth_mm, na.rm = T),
+            body_mass_mean = mean(body_mass_g, na.rm = T))
+
+res_ping
+
+```
+
+##
+
+```{r}
+#| output-location: slide
+
+# install.packages("gt")
+
+library(gt)
+
+res_ping %>% 
+  gt() 
+
+
+```
+
+##
+
+```{r}
+#| code-line-numbers: "3-5"
+res_ping %>% 
+  gt() %>% 
+  fmt_number(where(is.numeric), use_seps = T, sep_mark = ".",
+             dec_mark = ",", decimals = 2) %>% 
+  cols_label(5 ~ "Masa corporal (mm)")
+```
+
+##
+
+```{r}
+#| output-location: slide
+#| code-line-numbers: "6-10"
+res_ping %>% 
+  gt() %>% 
+  fmt_number(where(is.numeric), use_seps = T, sep_mark = ".",
+             dec_mark = ",", decimals = 2) %>% 
+  cols_label(5 ~ "Masa corporal (mm)") %>% 
+  data_color(columns = 5, direction = "column", method = "numeric",
+             palette = c("gray90", "steelblue")) %>% 
+  tab_header(title = "Datos de los pingüinos del Arch. Palmer", 
+             subtitle = "Desagregados por sexo y especie") %>% 
+  tab_footnote(footnote = "Datos del paquete de R 'palmerpenguins'")
+```
+
