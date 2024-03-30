@@ -7,6 +7,7 @@ library(tidyverse)
 library(haven)
 library(janitor)
 library(palmerpenguins)
+library(readxl)
 
 # Cargar datos
 
@@ -43,6 +44,8 @@ frec_diarios <- frec_confianza %>%
 barras <- frec_diarios %>% 
   ggplot(aes(confianza_6_e, frecuencia)) +
   geom_col()
+
+barras
 
 # geom_bar
 
@@ -148,3 +151,47 @@ pinguinos %>%
   theme_bw() +
   theme(legend.position = "none")
 
+
+#### EXTRA: GRÁFICO DE LÍNEA ####
+
+# Cargamos los datos del dolar observado de 2023
+dolar <- read_xls("data/Indicador.xls", skip = 3)
+
+# Verificamos que la columna día es de tipo POSIXct
+# Es la clase que tiene R para trabajar con fechas
+class(dolar$Dia)
+
+dolar %>%
+  filter(!is.na(Valor)) %>% #Quitamos días sin valor
+  ggplot(aes(Dia, Valor)) +
+  geom_line()
+
+dolar %>%
+  filter(!is.na(Valor)) %>% #Quitamos días sin valor
+  ggplot(aes(Dia, Valor)) +
+  geom_line(color = "steelblue")
+
+## Media móvil
+
+dolar_mov <- dolar %>%
+  filter(!is.na(Valor)) %>%
+  mutate(val_3 = zoo::rollmean(Valor, k = 3, fill = NA, align = "center"),
+         val_5 = zoo::rollmean(Valor, k = 5, fill = NA, align = "center"),
+         val_7 = zoo::rollmean(Valor, k = 7, fill = NA, align = "center"))
+
+dolar_mov %>%
+  pivot_longer(2:5, names_to = "medicion", values_to = "valores") %>%
+  ggplot(aes(Dia, valores, group = medicion, color = medicion)) +
+  geom_line()
+
+
+dolar_mov %>%
+  pivot_longer(2:5, names_to = "medicion", values_to = "valores") %>%
+  ggplot(aes(Dia, valores, group = medicion, color = medicion)) +
+  geom_line() +
+  scale_color_manual(
+    values = c("coral", 
+    "steelblue", 
+    "purple2", 
+    "lightgreen")) +
+  facet_wrap(~medicion)
