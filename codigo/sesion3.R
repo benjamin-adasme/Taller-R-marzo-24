@@ -140,7 +140,7 @@ pinguinos %>%
 
 pinguinos %>% 
   ggplot(aes(x = species, y = body_mass_g, fill = species)) +
-  geom_boxplot(alpha = 0.5) +
+  geom_boxplot(alpha = 0.5, outlier.alpha = 0) +
   geom_jitter(width = 0.15, shape = 21) +
   scale_fill_viridis_d() +
   labs(x = "Especies",
