@@ -34,7 +34,7 @@ Introducir R en personas que analicen datos cuantitativos sin lenguajes de progr
 
 ## Específicos {.smaller}
 
-::: incremental
+::: nonincremental
 -   Conocer la utilidad de R y las herramientas básicas de R base
 -   Conocer tidyverse, para limpieza, manipulación y exploración de datos
 -   Repasar estadísticas descriptiva (uni y multivariada) e inferencial.
@@ -54,7 +54,7 @@ En 2011 se publica la primera versión de Rstudio, la IDE más popular para trab
 
 ## ¿Por qué usar R?
 
-::: incremental
+::: nonincremental
 -   Replicabilidad
 -   Eficiencia
 -   Control
@@ -99,12 +99,12 @@ gt(t1) %>%
 ## ¿Qué es R? {.smaller}
 
 
-
+:::nonincremental
 -   Lenguaje de programación.
 -   No hay botones para hacer las cosas
 -   El usuario debe dar las "instrucciones por escrito"
 -   Hay más de una forma de hacer las cosas
-
+:::
 
 ## {.center}
 
